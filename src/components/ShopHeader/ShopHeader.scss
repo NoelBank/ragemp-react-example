@@ -1,0 +1,57 @@
+.shop-header-title {
+  font-family: 'Yellowtail', cursive;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 1.5;
+
+  color: #ffffff;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0;
+  text-align: center;
+  padding: 1.875rem 0;
+}
+
+.shop-header {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 1rem 1rem 0 0;
+  position: relative;
+}
+
+.shop-header-close {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+  height: 1.875rem;
+  width: 1.875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  background: #a82b2b;
+  border-radius: 0.375rem;
+}
+
+.shop-header-rob {
+  position: absolute;
+  background: #a82b2b;
+  border-radius: 0.1875rem 0.1875rem 0px 0px;
+  bottom: 0;
+  right: 1.875rem;
+  width: 6.5rem;
+  height: 1.25rem;
+
+  font-family: Arial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 6.94831px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+}
