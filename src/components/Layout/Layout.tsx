@@ -10,7 +10,7 @@ const Layout: React.FC = ({ children }) => {
           ? {
               backgroundRepeat: 'no-repeate',
               backgroundSize: 'cover',
-              backgroundImage: 'url(https://i.ibb.co/WKbQtZP/shop.jpg)',
+              backgroundImage: 'url(/shop.png)',
               height: '100vh',
               width: '100vw',
             }

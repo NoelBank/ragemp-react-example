@@ -4,4 +4,11 @@ body,
 #___gatsby {
   margin: 0;
   user-select: none;
+  font-family: Arial;
+}
+
+.nav-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }

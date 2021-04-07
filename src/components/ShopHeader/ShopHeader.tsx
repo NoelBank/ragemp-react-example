@@ -3,7 +3,7 @@
 import React from 'react';
 import './ShopHeader.scss';
 
-interface ShopHeaderInterface {
+export interface ShopHeaderInterface {
   title: string;
   image: string;
   closeShop: () => void;
@@ -39,7 +39,18 @@ const ShopHeader: React.FC<ShopHeaderInterface> = ({
         </svg>
       </div>
       <h1 className="shop-header-title">{title}</h1>
-      {hasRobBadge && <div className="shop-header-rob">AUSRAUBEN</div>}
+      {hasRobBadge && (
+        <div
+          className="shop-header-rob"
+          onClick={() => {
+            // eslint-disable-next-line no-alert
+            alert('Dieser Shop wird nun ausgeraubt!');
+            closeShop();
+          }}
+        >
+          AUSRAUBEN
+        </div>
+      )}
     </div>
   );
 };

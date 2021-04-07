@@ -1,0 +1,24 @@
+.shop-navigation-item {
+  width: 4.375rem;
+  height: 2.75rem;
+
+  color: #56d9e1;
+  background: #ffffff;
+  border: 2px solid #56d9e1;
+  box-sizing: border-box;
+  border-radius: 0.25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 250ms, color 250ms;
+
+  &:not(:last-of-type) {
+    margin-right: 0.3125rem;
+  }
+}
+
+.shop-navigation-item-selected {
+  background-color: #56d9e1;
+  color: #fff;
+}
