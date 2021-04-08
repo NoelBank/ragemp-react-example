@@ -1,14 +1,12 @@
 import React from "react";
-import { linkTo } from "@storybook/addon-links";
-import { Welcome } from "@storybook/react/demo";
+import ClothingStore from "../components/clothing-store";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: "Welcome",
-  component: Welcome,
+  title: "Clothing Store",
+  component: ClothingStore,
 };
 
-export const ToStorybook = () => <Welcome showApp={linkTo("Button")} />;
+export const Default = () => <ClothingStore />;
 
-ToStorybook.story = {
-  name: "to Storybook",
-};
+Default.story = {};
