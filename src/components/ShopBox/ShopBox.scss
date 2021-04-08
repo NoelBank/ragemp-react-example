@@ -13,6 +13,14 @@
 
   width: 30.75rem;
   height: 31.5rem;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.shop-open {
+  pointer-events: all;
+  opacity: 1;
 }
 
 .shop-box-item-list {

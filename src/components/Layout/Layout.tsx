@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Layout: React.FC = ({ children }) => {
-  const isDev = process.env.NODE_ENV === 'development';
+  const isDev = false && process.env.NODE_ENV === 'development';
 
   return (
     <main
@@ -14,7 +14,7 @@ const Layout: React.FC = ({ children }) => {
               height: '100vh',
               width: '100vw',
             }
-          : {}
+          : { height: '100vh', width: '100vw' }
       }
     >
       {children}
