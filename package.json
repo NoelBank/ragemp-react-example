@@ -14,7 +14,6 @@
   "devDependencies": {
     "@types/ragemp-c": "github:CocaColaBear/types-ragemp-c#master",
     "@types/ragemp-s": "github:CocaColaBear/types-ragemp-s#master",
-    "@types/jest": "24.0.0",
     "@types/node": "12.0.0",
     "@types/react": "16.9.0",
     "@types/react-dom": "16.9.0",
@@ -23,10 +22,7 @@
     "@storybook/addon-links": "5.3.10",
     "@storybook/addons": "5.3.10",
     "@storybook/preset-create-react-app": "1.5.2",
-    "@storybook/react": "5.3.10",
-    "@testing-library/jest-dom": "4.2.4",
-    "@testing-library/react": "9.3.2",
-    "@testing-library/user-event": "7.1.2"
+    "@storybook/react": "5.3.10"
   },
   "scripts": {
     "start": "react-scripts start",

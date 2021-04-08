@@ -1,5 +1,5 @@
 import React from "react";
-import ClothingStore from "../components/clothing-store";
+import ClothingStore from "../components/ClothingStore/ClothingStore";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

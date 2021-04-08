@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import useKeypress from "../hooks/useKeypress";
-import "./global.scss";
-import Layout from "./Layout/Layout";
-import ShopBox from "./ShopBox/ShopBox";
-import ShopNavigationItem from "./ShopNavigationItem/ShopNavigationItem";
+import useKeypress from "../../hooks/useKeypress";
+import Layout from "../Layout/Layout";
+import ShopBox from "../ShopBox/ShopBox";
+import ShopNavigationItem from "../ShopNavigationItem/ShopNavigationItem";
+import "./ClothingStore.scss";
 
 const ClothingStore: React.FC = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
