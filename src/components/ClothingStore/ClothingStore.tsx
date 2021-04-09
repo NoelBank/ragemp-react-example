@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useKeypress from "../../hooks/useKeypress";
 import Layout from "../Layout/Layout";
 import ShopBox from "../ShopBox/ShopBox";
@@ -9,6 +9,7 @@ const ClothingStore: React.FC = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [selectedNavigationItem, setSelectedNavigationItem] = useState("");
   const [playerData, setPlayerData] = useState("test kappa");
+  const [serverDate, setServerData] = useState();
 
   useKeypress("F3", () => {
     setIsShopOpen(!isShopOpen);
@@ -19,9 +20,17 @@ const ClothingStore: React.FC = () => {
     }
   });
 
+  useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    addEventListener("shopState", (value: any) => {
+      setServerData(value);
+    });
+  }, []);
+
   return (
     <Layout>
       <div>{playerData}</div>
+      <div>{serverDate}</div>
       <ShopBox
         closeShop={() => setIsShopOpen(false)}
         title="Kleidungsladen"
