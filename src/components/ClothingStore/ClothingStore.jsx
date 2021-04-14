@@ -12,12 +12,8 @@ const ClothingStore = () => {
   if (initialLoad) {
     EventManager.on("openShop", () => setIsShopOpen(true));
 
-    EventManager.on("onMessage", ({ value }) => {
-      setMessage(value);
-    });
-
     EventManager.on("shopInventory", ({ value }) => {
-      console.log("shopInventory", value);
+      setMessage(value);
     });
 
     EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
@@ -33,6 +29,7 @@ const ClothingStore = () => {
 
   return (
     <Layout>
+      <div>{message}</div>
       <ShopBox
         closeShop={() => {
           setIsShopOpen(!isShopOpen);
