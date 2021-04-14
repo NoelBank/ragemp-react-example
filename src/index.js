@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import ClothingStore from "./components/ClothingStore/ClothingStore";
-import EventManager from "./EventsManager";
 import "./style.scss";
 
 EventManager.on("shopInventory", (value) => {
