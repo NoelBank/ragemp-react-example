@@ -31,6 +31,8 @@ const ClothingStore = () => {
     // EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
     //   console.log("responseBuyProduct", success, errorMessage);
     // });
+    setMessage("has initial loaded!");
+
     setInitialLoad(false);
   }, [initialLoad, setInitialLoad]);
 
