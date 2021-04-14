@@ -15,9 +15,6 @@ Events:
 <- "shopInventory": string shopJson
 
 
-
-
-
 -> "previewProduct": int id, int variation
 
 <- "responsePreviewProduct": bool success, string errormsg

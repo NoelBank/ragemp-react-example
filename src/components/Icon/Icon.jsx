@@ -37,6 +37,8 @@ const Icon = ({ variant }) => {
       case "tasche":
         setSvg(tasche);
         break;
+      default:
+        console.log(variant, " not found");
     }
 
     return () => {
@@ -45,7 +47,7 @@ const Icon = ({ variant }) => {
   }, [variant]);
 
   // eslint-disable-next-line react/no-danger
-  return <i dangerouslySetInnerHTML={{ __html: svg }} />;
+  return <img src={svg} />;
 };
 
 export default Icon;

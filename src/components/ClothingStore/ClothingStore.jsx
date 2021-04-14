@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "../Layout/Layout";
 import ShopBox from "../ShopBox/ShopBox";
 import ShopNavigationItem from "../ShopNavigationItem/ShopNavigationItem";
-import EventManager from "../../helpers/EventsManager";
+import EventManager from "../../EventsManager";
 import "./ClothingStore.scss";
 
 const ClothingStore = () => {
@@ -11,11 +11,11 @@ const ClothingStore = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [message, setMessage] = useState("");
 
-  EventManager.addHandler("openShop", () => {
+  EventManager.on("openShop", () => {
     setIsShopOpen(!isShopOpen);
   });
 
-  EventManager.addHandler("onMessage", (text) => {
+  EventManager.on("onMessage", (text) => {
     setMessage(text);
     setPlayerData("");
   });
