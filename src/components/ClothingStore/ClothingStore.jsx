@@ -34,7 +34,7 @@ const ClothingStore = () => {
     setMessage("has initial loaded!");
 
     setInitialLoad(false);
-  }, [initialLoad, setInitialLoad]);
+  }, []);
 
   return (
     <Layout>
@@ -42,6 +42,9 @@ const ClothingStore = () => {
       <br />
       <div>{message}</div>
       <br />
+      <div>loaded events {initialLoad}</div>
+      <br />
+
       <button
         onClick={() => {
           let currentUrl = window.location.pathname;
