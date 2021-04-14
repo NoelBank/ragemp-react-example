@@ -9,6 +9,7 @@ const ClothingStore = () => {
   const [playerData, setPlayerData] = useState("player fallback");
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [message, setMessage] = useState("message fallback");
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     window.EventManager.on("openShop", () => {
@@ -16,7 +17,6 @@ const ClothingStore = () => {
     });
 
     window.EventManager.on("onMessage", ({ value }) => {
-      alert("onMessage", value);
       setMessage(value);
     });
 
@@ -31,7 +31,8 @@ const ClothingStore = () => {
     // EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
     //   console.log("responseBuyProduct", success, errorMessage);
     // });
-  }, []);
+    setInitialLoad(false);
+  }, [initialLoad, setInitialLoad]);
 
   return (
     <Layout>
