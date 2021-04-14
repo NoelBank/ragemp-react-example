@@ -20,17 +20,17 @@ const ClothingStore = () => {
       setMessage(value);
     });
 
-    EventManager.on("shopInventory", ({ value }) => {
-      console.log("shopInventory", value);
-    });
+    // EventManager.on("shopInventory", ({ value }) => {
+    //   console.log("shopInventory", value);
+    // });
 
-    EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
-      console.log("responsePreviewProduct", success, errorMessage);
-    });
+    // EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
+    //   console.log("responsePreviewProduct", success, errorMessage);
+    // });
 
-    EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
-      console.log("responseBuyProduct", success, errorMessage);
-    });
+    // EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
+    //   console.log("responseBuyProduct", success, errorMessage);
+    // });
   }, []);
 
   return (
