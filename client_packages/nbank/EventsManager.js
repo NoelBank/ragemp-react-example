@@ -21,11 +21,8 @@ var EventManager = {
 // Handle events from client
 function trigger(eventName, args) {
   var handlers = EventManager.events[eventName];
-  mp.trigger("logToChat", `${eventName}`);
 
   handlers.forEach((handler) => {
-    mp.trigger("logToChat", `${args}`);
-
     // check for arg type???
     handler(args);
   });

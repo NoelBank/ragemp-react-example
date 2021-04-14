@@ -26,6 +26,10 @@ mp.events.add({
   onMessageFromServer: (value) => {
     global.browser.execute(`trigger('onMessage', '${value}')`);
   },
+  playerSpawn: (player) => {
+    mp.gui.chat.push("Hey " + player.name + ", you just spawned");
+    mp.gui.chat.push("Your Pos " + player.position + ", hex");
+  },
 });
 
 mp.events.add("buyProduct", (item, paymentType) => {
