@@ -1,5 +1,4 @@
 mp.game.graphics.notify("Loaded nbank.shop");
-let cursorState = !mp.gui.cursor.visible;
 
 mp.events.add({
   guiReady: () => {
@@ -37,6 +36,7 @@ mp.keys.bind(0x72, true, () => {
 });
 
 mp.keys.bind(0x71, true, () => {
+  let cursorState = !mp.gui.cursor.visible;
   mp.gui.cursor.show(cursorState, cursorState);
 });
 
@@ -49,5 +49,6 @@ mp.events.add("logToChat", (value) => {
 });
 
 mp.events.add("toggleCursor", () => {
+  let cursorState = !mp.gui.cursor.visible;
   mp.gui.cursor.show(cursorState, cursorState);
 });
