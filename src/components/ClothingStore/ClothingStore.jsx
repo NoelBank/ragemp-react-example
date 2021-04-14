@@ -12,13 +12,24 @@ const ClothingStore = () => {
   const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    window.EventManager.on("openShop", () => {
+    EventManager.on("openShop", () => {
       setIsShopOpen(!isShopOpen);
     });
 
-    window.EventManager.on("onMessage", ({ value }) => {
+    EventManager.on("onMessage", ({ value }) => {
       setMessage(value);
     });
+
+    // add cleanup
+    return () => {
+      EventManager.removeHandler("openShop", () => {
+        setIsShopOpen(!isShopOpen);
+      });
+
+      EventManager.removeHandler("onMessage", ({ value }) => {
+        setMessage(value);
+      });
+    };
 
     // EventManager.on("shopInventory", ({ value }) => {
     //   console.log("shopInventory", value);
@@ -42,7 +53,7 @@ const ClothingStore = () => {
       <br />
       <div>{message}</div>
       <br />
-      <div>loaded events {initialLoad}</div>
+      <div>loaded events {initialLoad ? "true" : "false"}</div>
       <br />
 
       <button
