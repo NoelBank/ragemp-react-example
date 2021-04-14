@@ -42,10 +42,10 @@ mp.keys.bind(0x72, true, () => {
   mp.gui.chat.push("open shop");
 });
 
-mp.events.add("initialized", function () {
+mp.events.add("initialized", () => {
   mp.game.graphics.notify(`Browser was initialized`);
 });
 
-mp.events.add("alert", (value) => {
+mp.events.add("logToChat", (value) => {
   mp.gui.chat.push(value);
 });
