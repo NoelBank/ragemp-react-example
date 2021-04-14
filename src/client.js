@@ -30,10 +30,6 @@ mp.events.add("buyProduct", (item, paymentType) => {
   mp.events.callRemote("buyProduct", item.id, item.variation, paymentType);
 });
 
-mp.events.add("showUrl", (url) => {
-  mp.gui.chat.push(url);
-});
-
 // F2 - trigger cursor
 mp.keys.bind(0x71, true, () => {
   let state = !mp.gui.cursor.visible;
@@ -48,4 +44,8 @@ mp.keys.bind(0x72, true, () => {
 
 mp.events.add("initialized", function () {
   mp.game.graphics.notify(`Browser was initialized`);
+});
+
+mp.events.add("alert", (value) => {
+  mp.gui.chat.push(value);
 });
