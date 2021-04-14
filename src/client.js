@@ -45,7 +45,7 @@ mp.keys.bind(0x71, true, () => {
 // F3 - open shop
 mp.keys.bind(0x72, true, () => {
   browser.execute(`trigger('openShop')`);
-  mp.console.logInfo("f3 triggered", true, true);
+  mp.gui.chat.push("open shop");
 });
 
 function myFunction() {
