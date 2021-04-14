@@ -17,10 +17,9 @@ EventManager.on("responseBuyProduct", (success, errorMessage) => {
 });
 
 EventManager.on("onMessage", (value) => {
-  console.log("onMessage", value);
+  alert("onMessage", value);
+  mp.gui.chat.push(`browser got '${value}'.`);
 });
-
-console.log(EventManager.events);
 
 export function trigger(eventName, args) {
   var handlers = EventManager.events[eventName];
