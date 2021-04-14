@@ -16,6 +16,10 @@ EventManager.on("responseBuyProduct", (success, errorMessage) => {
   console.log("responseBuyProduct", success, errorMessage);
 });
 
+EventManager.on("onMessage", (value) => {
+  console.log("onMessage", value);
+});
+
 console.log(EventManager.events);
 
 export function trigger(eventName, args) {

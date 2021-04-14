@@ -15,16 +15,4 @@ var EventManager = {
   },
 };
 
-export function trigger(eventName, args) {
-  var handlers = EventManager.events[eventName];
-  try {
-    var data = JSON.parse(args);
-  } catch (e) {
-    mp.trigger("uiException", e.message);
-  }
-
-  console.log(EventManager.events);
-  handlers.forEach((handler) => handler(data));
-}
-
 export default EventManager;
