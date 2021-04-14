@@ -1,30 +1,28 @@
 mp.gui.chat.push("react client started");
 
-let browser;
-
 mp.events.add({
   guiReady: () => {
-    browser = mp.browsers.new("package://nbank/index.html");
+    global.browser = mp.browsers.new("package://nbank/index.html");
   },
   shopInventory: (value) => {
-    browser.execute(`trigger('shopInventory', '${value}')`);
+    global.browser.execute(`trigger('shopInventory', '${value}')`);
   },
   responsePreviewProduct: (success, errorMessage) => {
-    browser.execute(
+    global.browser.execute(
       `trigger('responsePreviewProduct', '${(success, errorMessage)}')`
     );
   },
   responseBuyProduct: (success, errorMessage) => {
-    browser.execute(
+    global.browser.execute(
       `trigger('responseBuyProduct', '${(success, errorMessage)}')`
     );
   },
   playerChat: (text) => {
-    browser.execute(`trigger('onMessage', '${text}')`);
+    global.browser.execute(`trigger('onMessage', '${text}')`);
     mp.gui.chat.push(`You wrote '${text}' in chat.`);
   },
   onMessageFromServer: (value) => {
-    browser.execute(`trigger('onMessage', '${value}')`);
+    global.browser.execute(`trigger('onMessage', '${value}')`);
   },
 });
 
@@ -44,10 +42,10 @@ mp.keys.bind(0x71, true, () => {
 
 // F3 - open shop
 mp.keys.bind(0x72, true, () => {
-  browser.execute(`trigger('openShop')`);
+  global.browser.execute(`trigger('openShop')`);
   mp.gui.chat.push("open shop");
 });
 
-function myFunction() {
-  alert("doing something!");
-}
+mp.events.add("initialized", function () {
+  mp.game.graphics.notify(`Browser was initialized`);
+});
