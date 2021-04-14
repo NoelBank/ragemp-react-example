@@ -11,7 +11,7 @@ const ClothingStore = () => {
   const [message, setMessage] = useState("message fallback");
   const [initialLoad, setInitialLoad] = useState(true);
 
-  useEffect(() => {
+  if (initialLoad) {
     EventManager.on("openShop", () => {
       setIsShopOpen(!isShopOpen);
     });
@@ -20,33 +20,36 @@ const ClothingStore = () => {
       setMessage(value);
     });
 
-    // EventManager.on("shopInventory", ({ value }) => {
-    //   console.log("shopInventory", value);
-    // });
-
-    // EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
-    //   console.log("responsePreviewProduct", success, errorMessage);
-    // });
-
-    // EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
-    //   console.log("responseBuyProduct", success, errorMessage);
-    // });
-
     setMessage("has initial loaded!");
 
     setInitialLoad(false);
+  }
 
-    // add cleanup
-    return () => {
-      EventManager.removeHandler("openShop", () => {
-        setIsShopOpen(!isShopOpen);
-      });
+  // useEffect(() => {
 
-      EventManager.removeHandler("onMessage", ({ value }) => {
-        setMessage(value);
-      });
-    };
-  }, []);
+  //   // EventManager.on("shopInventory", ({ value }) => {
+  //   //   console.log("shopInventory", value);
+  //   // });
+
+  //   // EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
+  //   //   console.log("responsePreviewProduct", success, errorMessage);
+  //   // });
+
+  //   // EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
+  //   //   console.log("responseBuyProduct", success, errorMessage);
+  //   // });
+
+  //   // add cleanup
+  //   return () => {
+  //     EventManager.removeHandler("openShop", () => {
+  //       setIsShopOpen(!isShopOpen);
+  //     });
+
+  //     EventManager.removeHandler("onMessage", ({ value }) => {
+  //       setMessage(value);
+  //     });
+  //   };
+  // }, []);
 
   return (
     <Layout>

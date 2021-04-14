@@ -1,4 +1,4 @@
-mp.gui.chat.push("react client started");
+mp.game.graphics.notify("Loaded nbank.shop");
 
 mp.events.add({
   guiReady: () => {
@@ -48,7 +48,7 @@ mp.keys.bind(0x74, true, () => {
 });
 
 mp.events.add("initialized", () => {
-  mp.game.graphics.notify(`Browser was initialized`);
+  mp.game.graphics.notify(`Shop loaded`);
 });
 
 mp.events.add("logToChat", (value) => {
