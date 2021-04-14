@@ -3,6 +3,8 @@ mp.game.graphics.notify("Loaded nbank.shop");
 mp.events.add({
   guiReady: () => {
     global.browser = mp.browsers.new("package://nbank/index.html");
+    mp.gui.cursor.show(false, false);
+    mp.players.local.setArmour(100);
   },
   shopInventory: (value) => {
     global.browser.execute(`trigger('shopInventory', '${value}')`);
@@ -32,12 +34,9 @@ mp.events.add("buyProduct", (item, paymentType) => {
 
 // F3 - open shop
 mp.keys.bind(0x72, true, () => {
-  global.browser.execute(`trigger('openShop')`);
-});
-
-mp.keys.bind(0x71, true, () => {
   let cursorState = !mp.gui.cursor.visible;
   mp.gui.cursor.show(cursorState, cursorState);
+  global.browser.execute(`trigger('openShop')`);
 });
 
 mp.events.add("initialized", () => {
@@ -50,7 +49,5 @@ mp.events.add("logToChat", (value) => {
 
 mp.events.add("toggleCursor", () => {
   let cursorState = !mp.gui.cursor.visible;
-  mp.game.graphics.notify(mp.gui.cursor.visible);
-
   mp.gui.cursor.show(cursorState, cursorState);
 });
