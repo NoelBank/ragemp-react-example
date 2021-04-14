@@ -32,6 +32,7 @@ mp.events.add("buyProduct", (item, paymentType) => {
 
 // F3 - open shop
 mp.keys.bind(0x72, true, () => {
+  mp.trigger("toggleCursor");
   global.browser.execute(`trigger('openShop')`);
 });
 
