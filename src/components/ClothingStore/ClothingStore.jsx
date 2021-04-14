@@ -10,10 +10,11 @@ const ClothingStore = () => {
   const [initialLoad, setInitialLoad] = useState(true);
 
   if (initialLoad) {
-    EventManager.on("openShop", () => {
-      setIsShopOpen(true);
-      mp.trigger("toggleCursor");
-    });
+    EventManager.on(
+      "openShop",
+      () => setIsShopOpen(true),
+      () => mp.trigger("toggleCursor")
+    );
 
     EventManager.on("onMessage", ({ value }) => {
       setMessage(value);
