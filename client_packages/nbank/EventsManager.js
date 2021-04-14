@@ -23,7 +23,11 @@ function trigger(eventName, args) {
   var handlers = EventManager.events[eventName];
   mp.trigger("logToChat", `${eventName}`);
 
-  handlers.forEach((handler) => handler(JSON.parse(args)));
+  handlers.forEach((handler) => {
+    mp.trigger("logToChat", `${JSON.stringify(handler)}`);
+
+    handler(JSON.parse(args));
+  });
 }
 
 window.trigger = trigger;
