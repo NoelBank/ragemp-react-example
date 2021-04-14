@@ -39,7 +39,6 @@ mp.keys.bind(0x71, true, () => {
 // F3 - open shop
 mp.keys.bind(0x72, true, () => {
   global.browser.execute(`trigger('openShop')`);
-  mp.gui.chat.push("open shop");
 });
 
 // F5 - open shop
@@ -48,7 +47,7 @@ mp.keys.bind(0x74, true, () => {
 });
 
 mp.events.add("initialized", () => {
-  mp.game.graphics.notify(`Shop loaded`);
+  mp.game.graphics.notify(`The Framework was loaded`);
 });
 
 mp.events.add("logToChat", (value) => {

@@ -1,1 +1,0 @@
-require("./nbank/client.js");

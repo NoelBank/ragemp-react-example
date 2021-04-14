@@ -13,7 +13,7 @@ const ClothingStore = () => {
 
   if (initialLoad) {
     EventManager.on("openShop", () => {
-      setIsShopOpen(!isShopOpen);
+      setIsShopOpen(true);
     });
 
     EventManager.on("onMessage", ({ value }) => {
