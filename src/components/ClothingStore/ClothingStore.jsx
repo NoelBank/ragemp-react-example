@@ -6,9 +6,9 @@ import "./ClothingStore.scss";
 
 const ClothingStore = () => {
   const [selectedNavigationItem, setSelectedNavigationItem] = useState("");
-  const [playerData, setPlayerData] = useState("test kappa");
+  const [playerData, setPlayerData] = useState("player fallback");
   const [isShopOpen, setIsShopOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("message fallback");
 
   useEffect(() => {
     window.EventManager.on("openShop", () => {
@@ -36,7 +36,9 @@ const ClothingStore = () => {
   return (
     <Layout>
       <div>{playerData}</div>
+      <br />
       <div>{message}</div>
+      <br />
       <button
         onClick={() => {
           let currentUrl = window.location.pathname;
