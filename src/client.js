@@ -36,3 +36,7 @@ mp.keys.bind(0x72, true, () => {
   browser.execute(`trigger('openShop')`);
   mp.console.logInfo("f3 triggered", true, true);
 });
+
+function myFunction() {
+  alert("doing something!");
+}

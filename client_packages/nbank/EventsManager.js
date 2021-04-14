@@ -1,5 +1,5 @@
 var EventManager = {
-  events: {},
+  events: [],
   on: function (eventName, handler) {
     if (eventName in this.events) {
       this.events[eventName].push(handler);
@@ -22,6 +22,8 @@ export function trigger(eventName, args) {
   } catch (e) {
     mp.trigger("uiException", e.message);
   }
+
+  console.log(EventManager.events);
   handlers.forEach((handler) => handler(data));
 }
 
