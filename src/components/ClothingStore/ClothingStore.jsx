@@ -20,17 +20,6 @@ const ClothingStore = () => {
       setMessage(value);
     });
 
-    // add cleanup
-    return () => {
-      EventManager.removeHandler("openShop", () => {
-        setIsShopOpen(!isShopOpen);
-      });
-
-      EventManager.removeHandler("onMessage", ({ value }) => {
-        setMessage(value);
-      });
-    };
-
     // EventManager.on("shopInventory", ({ value }) => {
     //   console.log("shopInventory", value);
     // });
@@ -42,9 +31,21 @@ const ClothingStore = () => {
     // EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
     //   console.log("responseBuyProduct", success, errorMessage);
     // });
+
     setMessage("has initial loaded!");
 
     setInitialLoad(false);
+
+    // add cleanup
+    return () => {
+      EventManager.removeHandler("openShop", () => {
+        setIsShopOpen(!isShopOpen);
+      });
+
+      EventManager.removeHandler("onMessage", ({ value }) => {
+        setMessage(value);
+      });
+    };
   }, []);
 
   return (
@@ -53,7 +54,7 @@ const ClothingStore = () => {
       <br />
       <div>{message}</div>
       <br />
-      <div>loaded events {initialLoad ? "true" : "false"}</div>
+      <div>loaded events {!initialLoad ? "true" : "false"}</div>
       <br />
 
       <button
