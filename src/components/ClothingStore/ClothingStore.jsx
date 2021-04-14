@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Layout/Layout";
 import ShopBox from "../ShopBox/ShopBox";
 import ShopNavigationItem from "../ShopNavigationItem/ShopNavigationItem";
@@ -10,14 +10,28 @@ const ClothingStore = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [message, setMessage] = useState("");
 
-  EventManager.on("openShop", () => {
-    setIsShopOpen(!isShopOpen);
-  });
+  useEffect(() => {
+    EventManager.on("openShop", () => {
+      setIsShopOpen(!isShopOpen);
+    });
 
-  EventManager.on("onMessage", (value) => {
-    alert("onMessage", value);
-    setMessage(value);
-  });
+    EventManager.on("onMessage", ({ value }) => {
+      alert("onMessage", value);
+      setMessage(value);
+    });
+
+    EventManager.on("shopInventory", ({ value }) => {
+      console.log("shopInventory", value);
+    });
+
+    EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
+      console.log("responsePreviewProduct", success, errorMessage);
+    });
+
+    EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
+      console.log("responseBuyProduct", success, errorMessage);
+    });
+  }, []);
 
   return (
     <Layout>
@@ -83,5 +97,4 @@ const ClothingStore = () => {
     </Layout>
   );
 };
-
 export default ClothingStore;

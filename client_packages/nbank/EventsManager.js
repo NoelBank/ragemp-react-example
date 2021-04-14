@@ -21,5 +21,7 @@ var EventManager = {
 // Handle events from client
 function trigger(eventName, args) {
   var handlers = EventManager.events[eventName];
+  mp.console.logInfo(eventName, true, true); // When pressing F11, you should now see a message saying "example"
+
   handlers.forEach((handler) => handler(JSON.parse(args)));
 }
