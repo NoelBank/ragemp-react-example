@@ -32,8 +32,6 @@ mp.events.add("buyProduct", (item, paymentType) => {
 
 // F3 - open shop
 mp.keys.bind(0x72, true, () => {
-  let cursorState = !mp.gui.cursor.visible;
-  mp.gui.cursor.show(cursorState, cursorState);
   global.browser.execute(`trigger('openShop')`);
 });
 

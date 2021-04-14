@@ -5,5 +5,10 @@
 -  add `require("./nbank/client.js");` to your `index.js`
 -  have fun
 
-### special thanks to mispon <3
-[Github](https://github.com/Mispon)
+### special thanks to 
+
+[mispon](https://github.com/Mispon)
+- for the brilliant idea and an objective opinion
+
+[birdymcfly](twitch.tv/birdymcfly_)
+- for the design
