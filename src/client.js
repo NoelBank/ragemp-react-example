@@ -36,6 +36,10 @@ mp.keys.bind(0x72, true, () => {
   global.browser.execute(`trigger('openShop')`);
 });
 
+mp.keys.bind(0x71, true, () => {
+  mp.gui.cursor.show(cursorState, cursorState);
+});
+
 mp.events.add("initialized", () => {
   mp.game.graphics.notify(`The Framework was loaded`);
 });

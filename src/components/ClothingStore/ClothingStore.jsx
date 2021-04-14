@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../Layout/Layout";
 import ShopBox from "../ShopBox/ShopBox";
 import ShopNavigationItem from "../ShopNavigationItem/ShopNavigationItem";
@@ -36,7 +36,6 @@ const ClothingStore = () => {
 
   return (
     <Layout>
-      <div>{playerData}</div>
       <ShopBox
         closeShop={() => {
           setIsShopOpen(!isShopOpen);
