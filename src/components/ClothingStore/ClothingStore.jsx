@@ -41,6 +41,7 @@ const ClothingStore = () => {
         onClick={() => {
           let currentUrl = window.location.pathname;
           mp.trigger("showUrl", currentUrl);
+          mp.trigger("alert", currentUrl);
         }}
       >
         KLICK HIER FÜR URL
