@@ -2,29 +2,27 @@ mp.gui.chat.push("react client started");
 
 let browser;
 
-mp.events.add("guiReady", () => {
-  browser = mp.browsers.new("package://nbank/index.html");
-});
-
-mp.events.add("shopInventory", (value) => {
-  browser.execute(`trigger('shopInventory', '${value}')`);
-});
-
-mp.events.add("responsePreviewProduct", (success, errorMessage) => {
-  browser.execute(
-    `trigger('responsePreviewProduct', '${(success, errorMessage)}')`
-  );
-});
-
-mp.events.add("responseBuyProduct", (success, errorMessage) => {
-  browser.execute(
-    `trigger('responseBuyProduct', '${(success, errorMessage)}')`
-  );
-});
-
-mp.events.add("playerChat", (text) => {
-  browser.execute(`trigger('onMessage', '${text}')`);
-  mp.gui.chat.push(`You wrote '${text}' in chat.`);
+mp.events.add({
+  guiReady: () => {
+    browser = mp.browsers.new("package://nbank/index.html");
+  },
+  shopInventory: (value) => {
+    browser.execute(`trigger('shopInventory', '${value}')`);
+  },
+  responsePreviewProduct: (success, errorMessage) => {
+    browser.execute(
+      `trigger('responsePreviewProduct', '${(success, errorMessage)}')`
+    );
+  },
+  responseBuyProduct: (success, errorMessage) => {
+    browser.execute(
+      `trigger('responseBuyProduct', '${(success, errorMessage)}')`
+    );
+  },
+  playerChat: (text) => {
+    browser.execute(`trigger('onMessage', '${text}')`);
+    mp.gui.chat.push(`You wrote '${text}' in chat.`);
+  },
 });
 
 // F2 - trigger cursor
