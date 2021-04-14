@@ -28,7 +28,13 @@ mp.events.add({
   },
   playerSpawn: (player) => {
     mp.gui.chat.push("Hey " + player.name + ", you just spawned");
-    mp.gui.chat.push("Your Pos " + JSON.stringify(player.position) + ", hex");
+    mp.colshapes.newSphere(
+      player.position.x,
+      player.position.y,
+      player.position.z,
+      25,
+      2
+    );
   },
 });
 
