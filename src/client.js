@@ -1,4 +1,5 @@
 mp.game.graphics.notify("Loaded nbank.shop");
+let cursorState = !mp.gui.cursor.visible;
 
 mp.events.add({
   guiReady: () => {
@@ -30,20 +31,9 @@ mp.events.add("buyProduct", (item, paymentType) => {
   mp.events.callRemote("buyProduct", item.id, item.variation, paymentType);
 });
 
-// F2 - trigger cursor
-mp.keys.bind(0x71, true, () => {
-  let state = !mp.gui.cursor.visible;
-  mp.gui.cursor.show(state, state);
-});
-
 // F3 - open shop
 mp.keys.bind(0x72, true, () => {
   global.browser.execute(`trigger('openShop')`);
-});
-
-// F5 - open shop
-mp.keys.bind(0x74, true, () => {
-  global.browser.reload(true);
 });
 
 mp.events.add("initialized", () => {
@@ -52,4 +42,8 @@ mp.events.add("initialized", () => {
 
 mp.events.add("logToChat", (value) => {
   mp.game.graphics.notify(value);
+});
+
+mp.events.add("toggleCursor", () => {
+  mp.gui.cursor.show(cursorState, cursorState);
 });

@@ -24,9 +24,10 @@ function trigger(eventName, args) {
   mp.trigger("logToChat", `${eventName}`);
 
   handlers.forEach((handler) => {
-    mp.trigger("logToChat", `${JSON.stringify(handler)}`);
+    mp.trigger("logToChat", `${args}`);
 
-    handler(JSON.parse(args));
+    // check for arg type???
+    handler(args);
   });
 }
 
