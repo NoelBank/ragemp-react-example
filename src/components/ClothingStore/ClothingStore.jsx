@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Layout from "../Layout/Layout";
 import ShopBox from "../ShopBox/ShopBox";
 import ShopNavigationItem from "../ShopNavigationItem/ShopNavigationItem";
-import EventManager from "../../EventsManager";
 import "./ClothingStore.scss";
 
 const ClothingStore = () => {
