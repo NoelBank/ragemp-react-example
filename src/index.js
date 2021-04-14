@@ -15,9 +15,4 @@ EventManager.on("responseBuyProduct", (success, errorMessage) => {
   console.log("responseBuyProduct", success, errorMessage);
 });
 
-EventManager.on("onMessage", (value) => {
-  alert("onMessage", value);
-  mp.gui.chat.push(`browser got '${value}'.`);
-});
-
 ReactDOM.render(<ClothingStore />, document.getElementById("app"));

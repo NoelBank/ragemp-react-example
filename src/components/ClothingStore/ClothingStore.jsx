@@ -15,15 +15,23 @@ const ClothingStore = () => {
     setIsShopOpen(!isShopOpen);
   });
 
-  EventManager.on("onMessage", (text) => {
-    setMessage(text);
-    setPlayerData("");
+  EventManager.on("onMessage", (value) => {
+    alert("onMessage", value);
+    setMessage(value);
   });
 
   return (
     <Layout>
       <div>{playerData}</div>
       <div>{message}</div>
+      <button
+        onClick={() => {
+          let currentUrl = window.location.pathname;
+          mp.trigger("showUrl", currentUrl);
+        }}
+      >
+        KLICK HIER FÜR URL
+      </button>
       <ShopBox
         closeShop={() => setIsShopOpen(!isShopOpen)}
         title="Kleidungsladen"

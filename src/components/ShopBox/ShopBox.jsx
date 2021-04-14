@@ -50,14 +50,8 @@ const ShopBox = ({
             <Button
               onClick={() => {
                 if (typeof window.mp !== "undefined") {
-                  // should buy via map?
                   (selectedItems || []).forEach((item) => {
-                    mp.events.callRemote(
-                      "buyProduct",
-                      item.id,
-                      item.variation,
-                      paymentType
-                    );
+                    mp.trigger("buyProduct", item, paymentType);
                   });
                 }
               }}

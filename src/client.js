@@ -23,6 +23,17 @@ mp.events.add({
     browser.execute(`trigger('onMessage', '${text}')`);
     mp.gui.chat.push(`You wrote '${text}' in chat.`);
   },
+  onMessageFromServer: (value) => {
+    browser.execute(`trigger('onMessage', '${value}')`);
+  },
+});
+
+mp.events.add("buyProduct", (item, paymentType) => {
+  mp.events.callRemote("buyProduct", item.id, item.variation, paymentType);
+});
+
+mp.events.add("showUrl", (url) => {
+  mp.gui.chat.push(url);
 });
 
 // F2 - trigger cursor
