@@ -41,7 +41,7 @@ const ClothingStore = () => {
         onClick={() => {
           let currentUrl = window.location.pathname;
           mp.trigger("showUrl", currentUrl);
-          mp.trigger("logToChat", currentUrl);
+          mp.trigger("logToChat", "click works");
         }}
       >
         KLICK HIER FÜR URL

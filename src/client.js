@@ -47,5 +47,5 @@ mp.events.add("initialized", () => {
 });
 
 mp.events.add("logToChat", (value) => {
-  mp.gui.chat.push(value);
+  mp.game.graphics.notify(value);
 });
