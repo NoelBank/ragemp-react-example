@@ -11,11 +11,11 @@ const ClothingStore = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    EventManager.on("openShop", () => {
+    window.EventManager.on("openShop", () => {
       setIsShopOpen(!isShopOpen);
     });
 
-    EventManager.on("onMessage", ({ value }) => {
+    window.EventManager.on("onMessage", ({ value }) => {
       alert("onMessage", value);
       setMessage(value);
     });
