@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Layout/Layout";
 import ShopBox from "../ShopBox/ShopBox";
 import ShopNavigationItem from "../ShopNavigationItem/ShopNavigationItem";
@@ -9,27 +9,29 @@ const ClothingStore = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
 
-  if (initialLoad) {
-    EventManager.on("openShop", () => setIsShopOpen(true));
+  useEffect(() => {
+    if (initialLoad) {
+      EventManager.on("openShop", () => setIsShopOpen(true));
 
-    EventManager.on("onMessage", ({ value }) => {
-      setMessage(value);
-    });
+      EventManager.on("onMessage", ({ value }) => {
+        setMessage(value);
+      });
 
-    EventManager.on("shopInventory", ({ value }) => {
-      console.log("shopInventory", value);
-    });
+      EventManager.on("shopInventory", ({ value }) => {
+        console.log("shopInventory", value);
+      });
 
-    EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
-      console.log("responsePreviewProduct", success, errorMessage);
-    });
+      EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
+        console.log("responsePreviewProduct", success, errorMessage);
+      });
 
-    EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
-      console.log("responseBuyProduct", success, errorMessage);
-    });
+      EventManager.on("responseBuyProduct", ({ success, errorMessage }) => {
+        console.log("responseBuyProduct", success, errorMessage);
+      });
 
-    setInitialLoad(false);
-  }
+      setInitialLoad(false);
+    }
+  }, [EventManager]);
 
   return (
     <Layout>
