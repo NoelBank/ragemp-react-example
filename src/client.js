@@ -42,6 +42,11 @@ mp.keys.bind(0x72, true, () => {
   mp.gui.chat.push("open shop");
 });
 
+// F5 - open shop
+mp.keys.bind(0x74, true, () => {
+  global.browser.reload(true);
+});
+
 mp.events.add("initialized", () => {
   mp.game.graphics.notify(`Browser was initialized`);
 });
