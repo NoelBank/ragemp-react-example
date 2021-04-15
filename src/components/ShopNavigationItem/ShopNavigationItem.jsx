@@ -10,7 +10,7 @@ const ShopNavigationItem = ({ name, iconVariant, isSelected, setSelected }) => (
       isSelected && "shop-navigation-item-selected"
     }`}
     data-name={name}
-    onClick={() => setSelected(name)}
+    onClick={() => setSelected()}
   >
     <Icon variant={iconVariant} />
   </div>

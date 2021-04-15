@@ -38,6 +38,7 @@ const ShopBox = ({
                     return (
                       <li
                         key={variant}
+                        style={{ backgroundColor: "greenyellow" }}
                         onClick={() =>
                           mp.trigger("toggleCursor", { ...item, variant })
                         }

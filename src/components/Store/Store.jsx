@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Layout from "../Layout/Layout";
 import ShopBox from "../ShopBox/ShopBox";
 import ShopNavigationItem from "../ShopNavigationItem/ShopNavigationItem";
@@ -14,12 +14,12 @@ const defaultDataByShop = {
 
 const Store = () => {
   const [selectedCategorie, setselectedCategorie] = useState("");
-  const [isShopOpen, setIsShopOpen] = useState(false);
+  const [isShopOpen, setIsShopOpen] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
   const [shopData, setShopData] = useState(shopResponseMock);
   const [paymentType, setPaymentType] = useState("Bar");
   const [selectedItems, setSelectedItems] = useState([]);
-  const shopCategories = [];
+  const [shopCategories, setshopCategories] = useState([]);
 
   const data = defaultDataByShop[shopData.Name];
 
@@ -29,7 +29,8 @@ const Store = () => {
     EventManager.on("openShop", () => setIsShopOpen(true));
 
     EventManager.on("shopInventory", (value) => {
-      setShopData(value);
+      setShopData(JSON.parse(value));
+      console.log("shop data", JSON.parse(value));
     });
 
     EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
@@ -43,16 +44,13 @@ const Store = () => {
     setInitialLoad(false);
   }
 
-  if (shopData.Products) {
-    console.log(shopData);
+  useLayoutEffect(() => {
     shopData.Products.forEach((product) => {
       if (!shopCategories.includes(product.Type)) {
-        shopCategories.push(product.Type);
+        setshopCategories([...shopCategories, product.Type]);
       }
     });
-  }
-
-  console.log(data);
+  }, [shopData.Products]);
 
   return (
     <Layout>
@@ -79,7 +77,7 @@ const Store = () => {
               <ShopNavigationItem
                 iconVariant={categorie}
                 isSelected={selectedCategorie === categorie}
-                setSelected={setselectedCategorie}
+                setSelected={() => setselectedCategorie(categorie)}
                 name={categorie}
                 key={categorie}
               />

@@ -16,6 +16,7 @@
 
   opacity: 0;
   pointer-events: none;
+  transition: opacity 250ms;
 }
 
 .shop-open {
@@ -59,7 +60,7 @@
 }
 
 .shop-box-order-headline {
-  font-family: 'Yellowtail', cursive;
+  font-family: "Yellowtail", cursive;
   font-style: normal;
   font-weight: normal;
   font-size: 1.125rem;
@@ -71,7 +72,7 @@
 }
 
 .shop-box-order-info {
-  font-family: 'Yellowtail', cursive;
+  font-family: "Yellowtail", cursive;
   font-style: normal;
   font-weight: normal;
   font-size: 0.8125rem;
