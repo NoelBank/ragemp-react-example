@@ -42,7 +42,7 @@ const ShopBox = ({
                         onClick={() => {
                           mp.trigger("logToChat", "hello world");
 
-                          mp.trigger("toggleCursor", item.ID, variant);
+                          mp.trigger("previewProduct", item.ID, variant);
                         }}
                       >
                         {variant}
