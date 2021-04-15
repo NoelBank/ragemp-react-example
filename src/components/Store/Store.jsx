@@ -14,7 +14,7 @@ const defaultDataByShop = {
 
 const Store = () => {
   const [selectedCategorie, setselectedCategorie] = useState("");
-  const [isShopOpen, setIsShopOpen] = useState(true);
+  const [isShopOpen, setIsShopOpen] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const [shopData, setShopData] = useState(shopResponseMock);
   const [paymentType, setPaymentType] = useState("Bar");
@@ -43,11 +43,14 @@ const Store = () => {
     setInitialLoad(false);
   }
 
-  shopData.Products?.forEach((product) => {
-    if (!shopCategories.includes(product.Type)) {
-      shopCategories.push(product.Type);
-    }
-  });
+  if (shopData.Products) {
+    console.log(shopData);
+    shopData.Products.forEach((product) => {
+      if (!shopCategories.includes(product.Type)) {
+        shopCategories.push(product.Type);
+      }
+    });
+  }
 
   return (
     <Layout>

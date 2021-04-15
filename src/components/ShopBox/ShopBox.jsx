@@ -73,7 +73,7 @@ const ShopBox = ({
             <Button
               onClick={() => {
                 if (typeof window.mp !== "undefined") {
-                  (selectedItems || []).forEach((item) => {
+                  selectedItems.forEach((item) => {
                     mp.trigger("buyProduct", item, paymentType);
                   });
                 }

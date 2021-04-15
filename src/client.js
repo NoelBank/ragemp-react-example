@@ -54,6 +54,11 @@ mp.keys.bind(0x72, true, () => {
   mp.events.callRemote("triggerInteraction");
 });
 
+// F2 - open shop
+mp.keys.bind(0x71, true, () => {
+  global.browser.reload();
+});
+
 mp.events.add("initialized", () => {
   mp.game.graphics.notify(`The Framework was loaded`);
 });
