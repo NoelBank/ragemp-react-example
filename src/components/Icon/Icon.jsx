@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as hose from "./icons/hose.svg";
+import * as Hose from "./icons/Hose.svg";
 import * as hut from "./icons/hut.svg";
 import * as schmuck from "./icons/schmuck.svg";
-import * as schuh from "./icons/schuh.svg";
+import * as Schuhe from "./icons/Schuhe.svg";
 import * as shirt from "./icons/shirt.svg";
 import * as tasche from "./icons/tasche.svg";
 
@@ -14,8 +14,8 @@ const Icon = ({ variant }) => {
     isMountedRef.current = true;
 
     switch (variant) {
-      case "hose":
-        setSvg(hose);
+      case "Hose":
+        setSvg(Hose);
         break;
 
       case "hut":
@@ -26,8 +26,8 @@ const Icon = ({ variant }) => {
         setSvg(schmuck);
         break;
 
-      case "schuh":
-        setSvg(schuh);
+      case "Schuhe":
+        setSvg(Schuhe);
         break;
 
       case "shirt":

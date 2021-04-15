@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../Button/Button";
 import ShopHeader from "../ShopHeader/ShopHeader";
 import "./ShopBox.scss";
@@ -10,10 +10,13 @@ const ShopBox = ({
   hasRobBadge,
   children,
   isShopOpen = false,
+  products,
+  paymentType,
+  setPaymentType,
+  selectedItems,
+  setSelectedItems,
+  price,
 }) => {
-  const [paymentType, setPaymentType] = useState("Bar");
-  const [selectedItems, setSelectedItems] = useState([]);
-
   return (
     <div className={`shop-box-wrapper ${isShopOpen ? "shop-open" : ""}`}>
       <ShopHeader
@@ -25,9 +28,29 @@ const ShopBox = ({
       <div className="shop-box">
         {children}
 
-        <div className="shop-box-item-list">
-          LISTE aller Jacken in Kategorien
-        </div>
+        <ul className="shop-box-item-list">
+          {products.map((item) => {
+            return (
+              <li key={item.ID}>
+                {item.Name} <br />
+                <ul>
+                  {item.Variants.map((variant) => {
+                    return (
+                      <li
+                        key={variant}
+                        onClick={() =>
+                          mp.trigger("toggleCursor", { ...item, variant })
+                        }
+                      >
+                        {variant}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            );
+          })}
+        </ul>
 
         <div className="shop-box-footer">
           <div className="shop-box-payment">
@@ -71,7 +94,7 @@ const ShopBox = ({
             <hr />
             <p className="shop-box-order-info">
               Zahlungsart: {paymentType} <br />
-              Gesammt: $1200
+              Gesammt: ${price}
             </p>
           </div>
         </div>

@@ -39,7 +39,11 @@ mp.events.add({
 });
 
 mp.events.add("buyProduct", (item, paymentType) => {
-  mp.events.callRemote("buyProduct", item.id, item.variation, paymentType);
+  mp.events.callRemote("buyProduct", item.ID, item.variant, paymentType);
+});
+
+mp.events.add("previewProduct", (item) => {
+  mp.events.callRemote("previewProduct", item.ID, item.variant);
 });
 
 // F3 - open shop
@@ -47,6 +51,7 @@ mp.keys.bind(0x72, true, () => {
   let cursorState = !mp.gui.cursor.visible;
   mp.gui.cursor.show(cursorState, cursorState);
   global.browser.execute(`trigger('openShop')`);
+  mp.events.callRemote("triggerInteraction");
 });
 
 mp.events.add("initialized", () => {

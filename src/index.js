@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ClothingStore from "./components/ClothingStore/ClothingStore";
+import Store from "./components/Store/Store";
 import "./style.scss";
 
-ReactDOM.render(<ClothingStore />, document.getElementById("app"));
+ReactDOM.render(<Store />, document.getElementById("app"));
