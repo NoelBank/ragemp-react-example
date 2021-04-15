@@ -59,8 +59,8 @@ const Store = () => {
           setIsShopOpen(!isShopOpen);
           mp.trigger("toggleCursor");
         }}
-        title={data.name}
-        image={data.picture}
+        title={data.name ?? "no name"}
+        image={data.picture ?? "no image"}
         isShopOpen={isShopOpen}
         paymentType={paymentType}
         setPaymentType={setPaymentType}
