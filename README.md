@@ -10,5 +10,5 @@
 [mispon](https://github.com/Mispon)
 - for the brilliant idea and an objective opinion
 
-[birdymcfly](twitch.tv/birdymcfly_)
+[birdymcfly](https://twitch.tv/birdymcfly_)
 - for the design
