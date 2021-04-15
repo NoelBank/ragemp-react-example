@@ -44,6 +44,7 @@ mp.events.add("buyProduct", (item, paymentType) => {
 
 mp.events.add("previewProduct", (item) => {
   mp.game.graphics.notify(item);
+  mp.game.graphics.notify("aufmachen?");
 
   mp.events.callRemote("previewProduct", item.ID, item.variant);
 });

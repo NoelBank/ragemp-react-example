@@ -39,9 +39,11 @@ const ShopBox = ({
                       <li
                         key={variant}
                         style={{ backgroundColor: "greenyellow" }}
-                        onClick={() =>
-                          mp.trigger("toggleCursor", { ...item, variant })
-                        }
+                        onClick={() => {
+                          mp.trigger("logToChat", "hello world");
+
+                          mp.trigger("toggleCursor", { ...item, variant });
+                        }}
                       >
                         {variant}
                       </li>
