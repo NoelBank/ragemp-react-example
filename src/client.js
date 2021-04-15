@@ -4,10 +4,10 @@ mp.events.add({
   guiReady: () => {
     global.browser = mp.browsers.new("package://nbank/index.html");
     mp.gui.cursor.show(false, false);
-    mp.players.local.setArmour(100);
   },
   shopInventory: (value) => {
     global.browser.execute(`trigger('shopInventory', '${value}')`);
+    mp.gui.cursor.show(true, true);
   },
   responsePreviewProduct: (success, errorMessage) => {
     global.browser.execute(
@@ -19,22 +19,8 @@ mp.events.add({
       `trigger('responseBuyProduct', '${(success, errorMessage)}')`
     );
   },
-  playerChat: (text) => {
-    global.browser.execute(`trigger('onMessage', '${text}')`);
-    mp.gui.chat.push(`You wrote '${text}' in chat.`);
-  },
   onMessageFromServer: (value) => {
     global.browser.execute(`trigger('onMessage', '${value}')`);
-  },
-  playerSpawn: (player) => {
-    mp.gui.chat.push("Hey " + player.name + ", you just spawned");
-    mp.colshapes.newSphere(
-      player.position.x,
-      player.position.y,
-      player.position.z,
-      25,
-      2
-    );
   },
 });
 
@@ -46,7 +32,6 @@ mp.events.add("previewProduct", (item, variant) => {
   mp.events.callRemote("previewProduct", item, variant);
 });
 
-// F3 - open shop
 mp.keys.bind("E", true, () => {
   mp.events.callRemote("triggerInteraction");
 });
