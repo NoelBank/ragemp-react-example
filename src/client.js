@@ -38,28 +38,17 @@ mp.events.add({
   },
 });
 
-mp.events.add("buyProduct", (item, paymentType) => {
-  mp.events.callRemote("buyProduct", item.ID, item.variant, paymentType);
+mp.events.add("buyProduct", (item, variant, paymentType) => {
+  mp.events.callRemote("buyProduct", item, variant, paymentType);
 });
 
 mp.events.add("previewProduct", (item, variant) => {
-  mp.game.graphics.notify(item);
-  mp.game.graphics.notify("aufmachen?");
-
   mp.events.callRemote("previewProduct", item, variant);
 });
 
 // F3 - open shop
-mp.keys.bind(0x72, true, () => {
-  let cursorState = !mp.gui.cursor.visible;
-  mp.gui.cursor.show(cursorState, cursorState);
-  global.browser.execute(`trigger('openShop')`);
+mp.keys.bind("E", true, () => {
   mp.events.callRemote("triggerInteraction");
-});
-
-// F2 - open shop
-mp.keys.bind(0x71, true, () => {
-  global.browser.reload();
 });
 
 mp.events.add("initialized", () => {

@@ -14,7 +14,7 @@ const defaultDataByShop = {
 
 const Store = () => {
   const [selectedCategorie, setselectedCategorie] = useState("");
-  const [isShopOpen, setIsShopOpen] = useState(true);
+  const [isShopOpen, setIsShopOpen] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const [shopData, setShopData] = useState(shopResponseMock);
   const [paymentType, setPaymentType] = useState("Bar");
@@ -26,11 +26,10 @@ const Store = () => {
   if (initialLoad) {
     setShopData(shopResponseMock);
 
-    EventManager.on("openShop", () => setIsShopOpen(true));
-
     EventManager.on("shopInventory", (value) => {
       setShopData(JSON.parse(value));
-      console.log("shop data", JSON.parse(value));
+      setIsShopOpen(true);
+      mp.trigger("toggleCursor");
     });
 
     EventManager.on("responsePreviewProduct", ({ success, errorMessage }) => {
