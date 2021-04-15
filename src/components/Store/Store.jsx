@@ -21,7 +21,7 @@ const Store = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const shopCategories = [];
 
-  const { name, picture } = defaultDataByShop[shopData.Name];
+  const data = defaultDataByShop[shopData.Name];
 
   if (initialLoad) {
     setShopData(shopResponseMock);
@@ -59,14 +59,14 @@ const Store = () => {
           setIsShopOpen(!isShopOpen);
           mp.trigger("toggleCursor");
         }}
-        title={name}
-        image={picture}
+        title={data.name}
+        image={data.picture}
         isShopOpen={isShopOpen}
         paymentType={paymentType}
         setPaymentType={setPaymentType}
         selectedItems={selectedItems}
         setSelectedItems={setSelectedItems}
-        products={shopData.Products.filter(
+        products={(shopData.Products || []).filter(
           (product) => product.Type === selectedCategorie
         )}
         price="1200"
