@@ -52,6 +52,8 @@ const Store = () => {
     });
   }
 
+  console.log(data);
+
   return (
     <Layout>
       <ShopBox
@@ -59,8 +61,8 @@ const Store = () => {
           setIsShopOpen(!isShopOpen);
           mp.trigger("toggleCursor");
         }}
-        title={data.name ?? "no name"}
-        image={data.picture ?? "no image"}
+        title={data ? data.name : "no name"}
+        image={data ? data.picture : "no image"}
         isShopOpen={isShopOpen}
         paymentType={paymentType}
         setPaymentType={setPaymentType}
