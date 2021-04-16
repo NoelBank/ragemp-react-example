@@ -8,7 +8,9 @@ mp.events.add({
   },
   shopInventory: (value: string) => {
     browser.execute(`trigger('shopInventory', '${value}')`);
-    mp.gui.cursor.show(true, true);
+    if (value) {
+      mp.gui.cursor.show(true, true);
+    }
   },
   responsePreviewProduct: (success: boolean, errorMessage: string) => {
     browser.execute(

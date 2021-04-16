@@ -61,7 +61,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
     EventManager.on(
       "responseBuyProduct",
       (success: boolean, errorMsg: string) => {
-        console.log(success);
+        console.log("can use buy product ", success);
         setResponseBuyProduct(success);
         errorMsg && console.error(errorMsg);
       }
@@ -77,10 +77,14 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
     );
     console.log("i want to buy ", item.Name);
 
-    if (responseBuyProduct) {
-      console.log("i bougth ", item.Name);
-      removeItemFromCart(item, selectedItem.variant);
-    }
+    setTimeout(() => {
+      if (responseBuyProduct) {
+        console.log("i bougth ", item.Name);
+        removeItemFromCart(item, selectedItem.variant);
+      } else {
+        console.log("i cant buy product because of ", responseBuyProduct);
+      }
+    }, 250);
   };
 
   return (
