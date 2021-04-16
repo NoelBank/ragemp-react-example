@@ -42,6 +42,7 @@ mp.keys.bind(69, true, () => {
 
 mp.events.add("initialized", () => {
   mp.game.graphics.notify(`The Framework was loaded`);
+  mp.gui.cursor.show(false, false);
 });
 
 mp.events.add("logToChat", (value) => {
