@@ -8,9 +8,6 @@ mp.events.add({
   },
   shopInventory: (value: string) => {
     browser.execute(`trigger('shopInventory', '${value}')`);
-
-    // this make me on leave open the cursor?
-    mp.gui.cursor.show(true, true);
   },
   responsePreviewProduct: (success: boolean, errorMessage: string) => {
     browser.execute(
@@ -40,6 +37,7 @@ mp.events.add("previewProduct", (item, variant) => {
 
 mp.keys.bind(69, true, () => {
   mp.events.callRemote("triggerInteraction");
+  mp.gui.cursor.show(true, true);
 });
 
 mp.events.add("initialized", () => {
