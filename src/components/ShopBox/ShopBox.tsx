@@ -111,7 +111,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
             </div>
             <Button
               onClick={() => {
-                selectedItems?.forEach((item) => {
+                (selectedItems ?? []).forEach((item) => {
                   mp.trigger("buyProduct", item.ID, item.variant, paymentType);
                 });
               }}

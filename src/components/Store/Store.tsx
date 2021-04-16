@@ -1,8 +1,8 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Layout from "../Layout/Layout";
-import ShopBox, { PaymentType } from "../ShopBox/ShopBox";
+import ShopBox from "../ShopBox/ShopBox";
 import ShopNavigationItem from "../ShopNavigationItem/ShopNavigationItem";
-import shopResponseMock, { ShopResponse } from "../../mocked_data/shopResponse";
+import { ShopResponse } from "../../mocked_data/shopResponse";
 import "./Store.scss";
 
 const defaultDataByShop = {
@@ -18,7 +18,7 @@ const defaultDataByShop = {
 
 const Store: React.FC = () => {
   const [selectedCategorie, setselectedCategorie] = useState("");
-  const [isShopOpen, setIsShopOpen] = useState(true);
+  const [isShopOpen, setIsShopOpen] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const [shopData, setShopData] = useState<ShopResponse>();
   const [shopCategories, setshopCategories] = useState<string[]>();
@@ -26,12 +26,11 @@ const Store: React.FC = () => {
   const { name, image } = defaultDataByShop[shopData?.Name ?? "Default"];
 
   useLayoutEffect(() => {
-    setShopData(shopResponseMock);
-
     EventManager.on("shopInventory", (value: string) => {
       setShopData(JSON.parse(value));
+      console.log("load");
+
       setIsShopOpen(true);
-      mp.trigger("toggleCursor");
     });
 
     EventManager.on("responsePreviewProduct", (response: string) => {
@@ -46,7 +45,7 @@ const Store: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    shopData?.Products?.forEach((product) => {
+    (shopData?.Products ?? []).forEach((product) => {
       if (!shopCategories?.includes(product.Type)) {
         setshopCategories(() => [...(shopCategories ?? []), product.Type]);
       }
