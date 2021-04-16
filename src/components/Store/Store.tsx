@@ -57,7 +57,7 @@ const Store: React.FC = () => {
       <ShopBox
         closeShop={() => {
           setIsShopOpen(!isShopOpen);
-          mp.trigger("toggleCursor");
+          mp.trigger("closeShop");
         }}
         title={name}
         image={image}

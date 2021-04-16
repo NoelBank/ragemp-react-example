@@ -48,7 +48,6 @@ mp.events.add("logToChat", (value) => {
   mp.game.graphics.notify(value);
 });
 
-mp.events.add("toggleCursor", () => {
-  let cursorState = !mp.gui.cursor.visible;
-  mp.gui.cursor.show(cursorState, cursorState);
+mp.events.add("closeShop", () => {
+  mp.gui.cursor.show(false, false);
 });
