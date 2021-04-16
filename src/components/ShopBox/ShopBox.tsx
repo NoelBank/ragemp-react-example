@@ -74,10 +74,11 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       selectedItem.variant,
       paymentType
     );
+
+    console.log(selectedItems);
   };
 
   const buyProduct = (success: boolean) => {
-    console.log(selectedItems);
     if (success && selectedItems) {
       console.log("i bougth ", selectedItems[0].Name);
       removeItemFromCart(selectedItems[0]);
