@@ -81,7 +81,9 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
     );
 
     for (let idx; (idx = 0); idx++) {
-      if (idx === 250) {
+      if (idx === 2500) {
+        console.log("i quited because of idx over 2500");
+
         break;
       }
 
