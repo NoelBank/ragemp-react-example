@@ -80,12 +80,18 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       paymentType
     );
 
-    while (!isProcessing) {
-      if (responseBuyProduct) {
-        console.log("i bougth ", item.Name);
-        removeItemFromCart(item, selectedItem.variant);
-      } else {
-        console.log("i cant buy product because of ", responseBuyProduct);
+    for (let idx; (idx = 0); idx++) {
+      if (idx === 250) {
+        break;
+      }
+
+      if (!isProcessing) {
+        if (responseBuyProduct) {
+          console.log("i bougth ", item.Name);
+          removeItemFromCart(item, selectedItem.variant);
+        } else {
+          console.log("i cant buy product because of ", responseBuyProduct);
+        }
       }
     }
   };
