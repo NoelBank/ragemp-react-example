@@ -23,7 +23,7 @@ export interface SelectedItem extends ProductsEntity {
 
 export type PaymentType = "cash" | "card";
 
-const itemsToBuy: SelectedItem[] = [];
+let itemsToBuy: SelectedItem[] = [];
 
 const ShopBox: React.FC<ShopBoxInterface> = ({
   title,
@@ -36,24 +36,21 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
   closeShop,
 }) => {
   const [price, setPrice] = useState(0);
-  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>();
   const [paymentType, setPaymentType] = useState<PaymentType>("cash");
 
   const addItemToCart = (item: SelectedItem) => {
-    setSelectedItems((oldState) => [
-      ...(oldState ?? []),
+    itemsToBuy = [
+      ...(itemsToBuy ?? []),
       {
         ...item,
         variant: item.variant,
       },
-    ]);
+    ];
     setPrice((oldState) => oldState + item.Price);
   };
 
   const removeItemFromCart = (item: SelectedItem) => {
-    setSelectedItems(
-      (selectedItems ?? []).filter((selItem) => selItem.ID !== item.ID)
-    );
+    itemsToBuy = (itemsToBuy ?? []).filter((selItem) => selItem.ID !== item.ID);
   };
 
   useLayoutEffect(() => {
@@ -65,7 +62,6 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
         if (success) {
           console.log(itemsToBuy);
           itemsToBuy.shift();
-          setSelectedItems(itemsToBuy);
         }
 
         if (errorMsg) {
@@ -130,8 +126,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
             </div>
             <Button
               onClick={() => {
-                (selectedItems ?? []).forEach((item) => {
-                  itemsToBuy.push(item);
+                (itemsToBuy ?? []).forEach((item) => {
                   mp.trigger("buyProduct", item.ID, item.variant, paymentType);
                 });
               }}
@@ -141,7 +136,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
             />
             <Button
               onClick={() => {
-                setSelectedItems([]);
+                itemsToBuy = [];
                 setPrice(0);
               }}
               variant="small"
@@ -153,7 +148,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
             <h4 className="shop-box-order-headline">Quittung</h4>
             <hr />
             <div>
-              {(selectedItems ?? []).map((selItem) => {
+              {(itemsToBuy ?? []).map((selItem) => {
                 const productData = products.find(
                   (product) => product.ID === selItem.ID
                 );
