@@ -17,7 +17,7 @@ mp.events.add({
   },
   responseBuyProduct: (success: boolean, errorMessage: string) => {
     browser.execute(
-      `trigger('responseBuyProduct', '${success}, ${errorMessage})}')`
+      `trigger('responseBuyProduct', ${success}, ${errorMessage}')`
     );
   },
   onMessageFromServer: (value: string) => {

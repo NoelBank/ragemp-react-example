@@ -60,8 +60,9 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
   useLayoutEffect(() => {
     EventManager.on(
       "responseBuyProduct",
-      (success: string, errorMsg: string) => {
-        setResponseBuyProduct(success.includes("true"));
+      (success: boolean, errorMsg: string) => {
+        console.log(success);
+        setResponseBuyProduct(success);
         errorMsg && console.error(errorMsg);
       }
     );
