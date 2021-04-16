@@ -62,8 +62,8 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       "responseBuyProduct",
       (success: boolean, errorMsg: string) => {
         setResponseBuyProduct(success);
-        console.error("success", success);
-        console.error("error message", errorMsg);
+        console.info("success", success);
+        errorMsg && console.error("error message", errorMsg);
       }
     );
   }, []);
@@ -82,6 +82,8 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       console.error("cant buy product");
     }
   };
+
+  console.log("responseBuyProduct", responseBuyProduct);
 
   return (
     <div
