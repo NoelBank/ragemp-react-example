@@ -62,8 +62,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       "responseBuyProduct",
       (success: string, errorMsg: string) => {
         setResponseBuyProduct(success.includes("true"));
-        console.info("success", success.includes("true"));
-        errorMsg && console.error("error message", errorMsg);
+        errorMsg && console.error(errorMsg);
       }
     );
   }, []);
@@ -75,15 +74,13 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       selectedItem.variant,
       paymentType
     );
+    console.log("i want to buy ", item.Name);
+
     if (responseBuyProduct) {
-      console.log("buy ", item.Name, selectedItem.variant);
+      console.log("i bougth ", item.Name);
       removeItemFromCart(item, selectedItem.variant);
-    } else {
-      console.error("cant buy product");
     }
   };
-
-  console.log("responseBuyProduct", responseBuyProduct);
 
   return (
     <div
