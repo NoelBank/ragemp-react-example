@@ -37,10 +37,6 @@ const Store: React.FC = () => {
       console.log("responsePreviewProduct", response);
     });
 
-    EventManager.on("responseBuyProduct", (response: string) => {
-      console.log("responseBuyProduct", response);
-    });
-
     setInitialLoad(false);
   }, []);
 

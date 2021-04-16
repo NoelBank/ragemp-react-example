@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { ProductsEntity } from "src/mocked_data/shopResponse";
 import Button from "../Button/Button";
 import ShopHeader from "../ShopHeader/ShopHeader";
@@ -37,6 +37,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
   const [price, setPrice] = useState(0);
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>();
   const [paymentType, setPaymentType] = useState<PaymentType>("cash");
+  const [responseBuyProduct, setResponseBuyProduct] = useState(false);
 
   const addItemToCart = (item: ProductsEntity, currentVariant: number) => {
     setSelectedItems((oldState) => [
@@ -54,6 +55,30 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
     setSelectedItems(
       (selectedItems ?? []).filter((selItem) => selItem.ID !== item.ID)
     );
+  };
+
+  useLayoutEffect(() => {
+    EventManager.on(
+      "responseBuyProduct",
+      (success: boolean, errorMsg: string) => {
+        setResponseBuyProduct(success);
+        console.error(errorMsg);
+      }
+    );
+  }, []);
+
+  const buyProduct = (item: ProductsEntity, selectedItem: SelectedItem) => {
+    mp.trigger(
+      "buyProduct",
+      selectedItem.ID,
+      selectedItem.variant,
+      paymentType
+    );
+    if (responseBuyProduct) {
+      removeItemFromCart(item, selectedItem.variant);
+    } else {
+      console.error("cant buy product");
+    }
   };
 
   return (
@@ -112,7 +137,11 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
             <Button
               onClick={() => {
                 (selectedItems ?? []).forEach((item) => {
-                  mp.trigger("buyProduct", item.ID, item.variant, paymentType);
+                  const productItem = (productsByCategorie.length
+                    ? productsByCategorie
+                    : products
+                  ).filter((product) => product.ID === item.ID);
+                  buyProduct(productItem[0], item);
                 });
               }}
               text="Bezahlen"
