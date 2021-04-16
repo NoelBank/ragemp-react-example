@@ -53,6 +53,9 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       (selectedItems ?? []).filter((selItem) => selItem.ID !== item.ID)
     );
   };
+  const removeLastItemFromCart = () => {
+    setSelectedItems((selectedItems ?? []).splice(0, 1));
+  };
 
   useLayoutEffect(() => {
     EventManager.on(
@@ -79,9 +82,9 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
   };
 
   const buyProduct = (success: boolean) => {
-    if (success && selectedItems) {
-      console.log("i bougth ", selectedItems[0].Name);
-      removeItemFromCart(selectedItems[0]);
+    if (success) {
+      console.log("i bougth ", selectedItems?.[0].Name);
+      removeLastItemFromCart();
     } else {
       console.log("i cant buy product because of ", selectedItems);
     }
