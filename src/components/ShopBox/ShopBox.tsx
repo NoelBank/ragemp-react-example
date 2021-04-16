@@ -23,6 +23,8 @@ export interface SelectedItem extends ProductsEntity {
 
 export type PaymentType = "cash" | "card";
 
+const itemsToBuy: SelectedItem[] = [];
+
 const ShopBox: React.FC<ShopBoxInterface> = ({
   title,
   image,
@@ -59,6 +61,12 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       "responseBuyProduct",
       (success: boolean, errorMsg: string | undefined) => {
         console.log("can user buy product ", success);
+
+        if (success) {
+          console.log(itemsToBuy);
+          itemsToBuy.shift();
+          setSelectedItems(itemsToBuy);
+        }
 
         if (errorMsg) {
           console.error(errorMsg);
@@ -123,6 +131,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
             <Button
               onClick={() => {
                 (selectedItems ?? []).forEach((item) => {
+                  itemsToBuy.push(item);
                   mp.trigger("buyProduct", item.ID, item.variant, paymentType);
                 });
               }}

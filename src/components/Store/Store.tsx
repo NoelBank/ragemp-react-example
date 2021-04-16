@@ -19,7 +19,6 @@ const defaultDataByShop = {
 const Store: React.FC = () => {
   const [selectedCategorie, setselectedCategorie] = useState("");
   const [isShopOpen, setIsShopOpen] = useState(false);
-  const [initialLoad, setInitialLoad] = useState(true);
   const [shopData, setShopData] = useState<ShopResponse>();
   const [shopCategories, setshopCategories] = useState<string[]>();
 
@@ -27,17 +26,15 @@ const Store: React.FC = () => {
 
   useLayoutEffect(() => {
     EventManager.on("shopInventory", (value: string) => {
-      setShopData(JSON.parse(value));
-      console.log("load");
-
-      setIsShopOpen(true);
+      if (value) {
+        setShopData(JSON.parse(value));
+        setIsShopOpen(true);
+      }
     });
 
     EventManager.on("responsePreviewProduct", (response: string) => {
       console.log("responsePreviewProduct", response);
     });
-
-    setInitialLoad(false);
   }, []);
 
   useEffect(() => {
