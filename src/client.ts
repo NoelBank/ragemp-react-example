@@ -12,12 +12,12 @@ mp.events.add({
   },
   responsePreviewProduct: (success: boolean, errorMessage: string) => {
     browser.execute(
-      `trigger('responsePreviewProduct', '${success}, ${errorMessage}')`
+      `trigger('responsePreviewProduct', ${success}, '${errorMessage}')`
     );
   },
   responseBuyProduct: (success: boolean, errorMessage: string) => {
     browser.execute(
-      `trigger('responseBuyProduct', ${success}, ${errorMessage}')`
+      `trigger('responseBuyProduct', ${success}, '${errorMessage}')`
     );
   },
   onMessageFromServer: (value: string) => {
