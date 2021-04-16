@@ -36,7 +36,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
   const [price, setPrice] = useState(0);
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>();
   const [paymentType, setPaymentType] = useState<PaymentType>("cash");
-  const [responseBuyProduct, setResponseBuyProduct] = useState(false);
+
   const addItemToCart = (item: SelectedItem) => {
     setSelectedItems((oldState) => [
       ...(oldState ?? []),
@@ -59,27 +59,30 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       "responseBuyProduct",
       (success: boolean, errorMsg: string) => {
         console.log("can user buy product ", success);
-        setResponseBuyProduct(success);
 
-        if (success && selectedItems) {
-          console.log("i bougth ", selectedItems[0].Name);
-          removeItemFromCart(selectedItems[0]);
-        } else {
-          console.log("i cant buy product because of ", selectedItems);
-        }
+        buyProduct(success);
 
         errorMsg && console.error(errorMsg);
       }
     );
   }, []);
 
-  const buyProduct = (selectedItem: SelectedItem) => {
+  const wantBuyProduct = (selectedItem: SelectedItem) => {
     mp.trigger(
       "buyProduct",
       selectedItem.ID,
       selectedItem.variant,
       paymentType
     );
+  };
+
+  const buyProduct = (success: boolean) => {
+    if (success && selectedItems) {
+      console.log("i bougth ", selectedItems[0].Name);
+      removeItemFromCart(selectedItems[0]);
+    } else {
+      console.log("i cant buy product because of ", selectedItems);
+    }
   };
 
   return (
@@ -142,7 +145,8 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
                     ? productsByCategorie
                     : products
                   ).filter((product) => product.ID === item.ID);
-                  buyProduct({ ...productItem[0], variant: item.variant });
+
+                  wantBuyProduct({ ...productItem[0], variant: item.variant });
                 });
               }}
               text="Bezahlen"
