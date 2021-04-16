@@ -17,8 +17,7 @@ interface ShopBoxInterface {
   hasRobBadge?: boolean;
 }
 
-interface SelectedItem {
-  ID: number;
+export interface SelectedItem extends ProductsEntity {
   variant: number;
 }
 
@@ -38,22 +37,18 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>();
   const [paymentType, setPaymentType] = useState<PaymentType>("cash");
   const [responseBuyProduct, setResponseBuyProduct] = useState(false);
-  const [isProcessing, setisProcessing] = useState(false);
-  const [productToBuy, setProductToBuy] = useState(true);
-
-  const addItemToCart = (item: ProductsEntity, currentVariant: number) => {
+  const addItemToCart = (item: SelectedItem) => {
     setSelectedItems((oldState) => [
       ...(oldState ?? []),
       {
-        ID: item.ID,
-        variant: currentVariant,
+        ...item,
+        variant: item.variant,
       },
     ]);
     setPrice((oldState) => oldState + item.Price);
   };
 
-  const removeItemFromCart = (item: ProductsEntity, currentVariant: number) => {
-    console.log(currentVariant);
+  const removeItemFromCart = (item: SelectedItem) => {
     setSelectedItems(
       (selectedItems ?? []).filter((selItem) => selItem.ID !== item.ID)
     );
@@ -65,37 +60,26 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       (success: boolean, errorMsg: string) => {
         console.log("can user buy product ", success);
         setResponseBuyProduct(success);
+
+        if (responseBuyProduct && selectedItems) {
+          console.log("i bougth ", selectedItems[0].Name);
+          removeItemFromCart(selectedItems[0]);
+        } else {
+          console.log("i cant buy product because of ", responseBuyProduct);
+        }
+
         errorMsg && console.error(errorMsg);
-        setisProcessing(false);
       }
     );
   }, []);
 
-  const buyProduct = (item: ProductsEntity, selectedItem: SelectedItem) => {
-    setisProcessing(true);
+  const buyProduct = (selectedItem: SelectedItem) => {
     mp.trigger(
       "buyProduct",
       selectedItem.ID,
       selectedItem.variant,
       paymentType
     );
-
-    for (let idx; (idx = 0); idx++) {
-      if (idx === 2500) {
-        console.log("i quited because of idx over 2500");
-
-        break;
-      }
-
-      if (!isProcessing) {
-        if (responseBuyProduct) {
-          console.log("i bougth ", item.Name);
-          removeItemFromCart(item, selectedItem.variant);
-        } else {
-          console.log("i cant buy product because of ", responseBuyProduct);
-        }
-      }
-    }
   };
 
   return (
@@ -158,7 +142,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
                     ? productsByCategorie
                     : products
                   ).filter((product) => product.ID === item.ID);
-                  buyProduct(productItem[0], item);
+                  buyProduct({ ...productItem[0], variant: item.variant });
                 });
               }}
               text="Bezahlen"

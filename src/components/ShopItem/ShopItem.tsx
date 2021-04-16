@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { ProductsEntity } from "src/mocked_data/shopResponse";
 import Badge from "../Badge/Badge";
+import { SelectedItem } from "../ShopBox/ShopBox";
 import "./ShopItem.scss";
 
 interface ShopItemInterface {
   item: ProductsEntity;
-  addItemToCart: (item: ProductsEntity, currentVariant: number) => void;
-  removeItemFromCart: (item: ProductsEntity, currentVariant: number) => void;
+  addItemToCart: (item: SelectedItem) => void;
+  removeItemFromCart: (item: SelectedItem) => void;
   previousVariant: (
     item: ProductsEntity,
     currentVariantIndex: number
@@ -65,8 +66,16 @@ const ShopItem: React.FC<ShopItemInterface> = ({
       </td>
       <td>
         <div className="shop-item-cart-info">
-          <div onClick={() => addItemToCart(item, currentVariant)}>(+)</div>
-          <div onClick={() => removeItemFromCart(item, currentVariant)}>
+          <div
+            onClick={() => addItemToCart({ ...item, variant: currentVariant })}
+          >
+            (+)
+          </div>
+          <div
+            onClick={() =>
+              removeItemFromCart({ ...item, variant: currentVariant })
+            }
+          >
             (-)
           </div>
         </div>
