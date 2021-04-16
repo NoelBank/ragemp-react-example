@@ -11,8 +11,8 @@
   top: 5rem;
   right: 5rem;
 
-  width: 30.75rem;
-  height: 31.5rem;
+  width: 32.75rem;
+  height: 33.5rem;
 
   opacity: 0;
   pointer-events: none;
@@ -29,6 +29,29 @@
   background: #212121;
   border-radius: 5px;
   height: 7.125rem;
+  overflow: hidden scroll;
+  padding: 0.5rem;
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #171717;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: #171717;
+    border-radius: 14.7059px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 14.7059px;
+  }
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+  }
 }
 
 .shop-box-footer {
@@ -75,9 +98,7 @@
   font-family: "Yellowtail", cursive;
   font-style: normal;
   font-weight: normal;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   line-height: 1;
-  /* or 102% */
-
   color: #000000;
 }

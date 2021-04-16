@@ -1,9 +1,19 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
 import "./ShopHeader.scss";
 
-const ShopHeader = ({ title, image, closeShop, hasRobBadge = false }) => {
+interface ShopHeaderInterface {
+  title: string;
+  image: string;
+  closeShop: () => void;
+  hasRobBadge?: boolean;
+}
+
+const ShopHeader: React.FC<ShopHeaderInterface> = ({
+  title,
+  image,
+  closeShop,
+  hasRobBadge = false,
+}) => {
   const imageStyles = {
     backgroundImage: `linear-gradient(180deg, rgba(27, 86, 92, 0) -8.9%, #1B565C 148.73%), url(${image})`,
   };
@@ -31,8 +41,6 @@ const ShopHeader = ({ title, image, closeShop, hasRobBadge = false }) => {
         <div
           className="shop-header-rob"
           onClick={() => {
-            // eslint-disable-next-line no-alert
-            alert("Dieser Shop wird nun ausgeraubt!");
             closeShop();
           }}
         >

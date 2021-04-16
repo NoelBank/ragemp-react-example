@@ -1,0 +1,23 @@
+
+  {
+    "compilerOptions": {
+      "resolveJsonModule": true,
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "jsx": "react",
+      "lib": ["DOM", "ESNext"],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "noEmit": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "target": "ESNext",
+      "baseUrl": ".",
+      "isolatedModules": true,
+      "incremental": true,
+    },
+    "include": ["src/components", "src/custom.d.ts"],
+  }

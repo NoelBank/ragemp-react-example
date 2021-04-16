@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background 250ms, color 250ms;
+  transition: background 250ms, filter 250ms;
 
   &:not(:last-of-type) {
     margin-right: 0.3125rem;
@@ -20,5 +20,8 @@
 
 .shop-navigation-item-selected {
   background-color: #56d9e1;
-  color: #fff;
+
+  img {
+    filter: grayscale(1) brightness(2);
+  }
 }

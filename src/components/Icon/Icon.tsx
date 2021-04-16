@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as Hose from "./icons/Hose.svg";
-import * as hut from "./icons/hut.svg";
-import * as schmuck from "./icons/schmuck.svg";
-import * as Schuhe from "./icons/Schuhe.svg";
-import * as shirt from "./icons/shirt.svg";
-import * as tasche from "./icons/tasche.svg";
+import Hose from "./icons/Hose.svg";
+import hut from "./icons/hut.svg";
+import schmuck from "./icons/schmuck.svg";
+import Schuhe from "./icons/Schuhe.svg";
+import shirt from "./icons/shirt.svg";
+import tasche from "./icons/tasche.svg";
 
-const Icon = ({ variant }) => {
+interface IconInterface {
+  variant: string;
+}
+
+const Icon: React.FC<IconInterface> = ({ variant }) => {
   const [svg, setSvg] = useState("");
   const isMountedRef = useRef(false);
 

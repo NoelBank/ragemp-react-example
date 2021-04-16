@@ -1,4 +1,4 @@
-// Global variable for describe on events from react components
+// Global variable for describe on events from react components thanks for code from mipson
 var EventManager = {
   events: {},
 

@@ -1,0 +1,29 @@
+.shop-item-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  hr {
+    border: 2px solid #171717;
+    width: 100%;
+  }
+
+  &:last-child hr {
+    display: none;
+  }
+}
+
+.shop-item {
+  margin: 0;
+
+  td {
+    border-bottom: 2px solid #171717;
+    padding: 0.5rem 0;
+  }
+}
+
+.shop-item-badge,
+.shop-item-cart-info,
+.shop-item-variant-selector {
+  display: flex;
+  justify-content: flex-end;
+}

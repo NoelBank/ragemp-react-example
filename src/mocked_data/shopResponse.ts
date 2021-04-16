@@ -1,4 +1,16 @@
-const shopResponseMock = {
+export interface ShopResponse {
+  Name: "Kleidungsladen";
+  Products: ProductsEntity[];
+}
+export interface ProductsEntity {
+  ID: number;
+  Name: string;
+  Type: string;
+  Variants?: number[];
+  Price: number;
+}
+
+const shopResponseMock: ShopResponse = {
   Name: "Kleidungsladen",
   Products: [
     {
