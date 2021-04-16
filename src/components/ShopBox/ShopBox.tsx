@@ -53,42 +53,19 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
       (selectedItems ?? []).filter((selItem) => selItem.ID !== item.ID)
     );
   };
-  const removeLastItemFromCart = () => {
-    setSelectedItems((selectedItems ?? []).splice(0, 1));
-  };
 
   useLayoutEffect(() => {
     EventManager.on(
       "responseBuyProduct",
-      (success: boolean, errorMsg: string) => {
+      (success: boolean, errorMsg: string | undefined) => {
         console.log("can user buy product ", success);
 
-        buyProduct(success);
-
-        errorMsg && console.error(errorMsg);
+        if (errorMsg) {
+          console.error(errorMsg);
+        }
       }
     );
   }, []);
-
-  const wantBuyProduct = (selectedItem: SelectedItem) => {
-    mp.trigger(
-      "buyProduct",
-      selectedItem.ID,
-      selectedItem.variant,
-      paymentType
-    );
-
-    console.log(selectedItems);
-  };
-
-  const buyProduct = (success: boolean) => {
-    if (success) {
-      console.log("i bougth ", selectedItems?.[0].Name);
-      removeLastItemFromCart();
-    } else {
-      console.log("i cant buy product because of ", selectedItems);
-    }
-  };
 
   return (
     <div
@@ -146,12 +123,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
             <Button
               onClick={() => {
                 (selectedItems ?? []).forEach((item) => {
-                  const productItem = (productsByCategorie.length
-                    ? productsByCategorie
-                    : products
-                  ).filter((product) => product.ID === item.ID);
-
-                  wantBuyProduct({ ...productItem[0], variant: item.variant });
+                  mp.trigger("buyProduct", item.ID, item.variant, paymentType);
                 });
               }}
               text="Bezahlen"
