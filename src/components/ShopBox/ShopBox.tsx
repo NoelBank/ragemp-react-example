@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { ProductsEntity } from "src/mocked_data/shopResponse";
 import Button from "../Button/Button";
 import ShopHeader from "../ShopHeader/ShopHeader";
@@ -38,6 +38,8 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>();
   const [paymentType, setPaymentType] = useState<PaymentType>("cash");
   const [responseBuyProduct, setResponseBuyProduct] = useState(false);
+  const [isProcessing, setisProcessing] = useState(false);
+  const [productToBuy, setProductToBuy] = useState(true);
 
   const addItemToCart = (item: ProductsEntity, currentVariant: number) => {
     setSelectedItems((oldState) => [
@@ -61,30 +63,31 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
     EventManager.on(
       "responseBuyProduct",
       (success: boolean, errorMsg: string) => {
-        console.log("can use buy product ", success);
+        console.log("can user buy product ", success);
         setResponseBuyProduct(success);
         errorMsg && console.error(errorMsg);
+        setisProcessing(false);
       }
     );
   }, []);
 
   const buyProduct = (item: ProductsEntity, selectedItem: SelectedItem) => {
+    setisProcessing(true);
     mp.trigger(
       "buyProduct",
       selectedItem.ID,
       selectedItem.variant,
       paymentType
     );
-    console.log("i want to buy ", item.Name);
 
-    setTimeout(() => {
+    while (!isProcessing) {
       if (responseBuyProduct) {
         console.log("i bougth ", item.Name);
         removeItemFromCart(item, selectedItem.variant);
       } else {
         console.log("i cant buy product because of ", responseBuyProduct);
       }
-    }, 250);
+    }
   };
 
   return (
