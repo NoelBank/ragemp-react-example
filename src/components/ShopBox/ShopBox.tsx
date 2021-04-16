@@ -23,8 +23,6 @@ export interface SelectedItem extends ProductsEntity {
 
 export type PaymentType = "cash" | "card";
 
-let itemsToBuy: SelectedItem[] = [];
-
 const ShopBox: React.FC<ShopBoxInterface> = ({
   title,
   image,
@@ -37,6 +35,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
 }) => {
   const [price, setPrice] = useState(0);
   const [paymentType, setPaymentType] = useState<PaymentType>("cash");
+  let itemsToBuy: SelectedItem[];
 
   const addItemToCart = (item: SelectedItem) => {
     itemsToBuy = [
