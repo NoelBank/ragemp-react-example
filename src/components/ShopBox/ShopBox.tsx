@@ -77,6 +77,7 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
   };
 
   const buyProduct = (success: boolean) => {
+    console.log(selectedItems);
     if (success && selectedItems) {
       console.log("i bougth ", selectedItems[0].Name);
       removeItemFromCart(selectedItems[0]);
