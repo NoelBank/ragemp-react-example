@@ -61,11 +61,11 @@ const ShopBox: React.FC<ShopBoxInterface> = ({
         console.log("can user buy product ", success);
         setResponseBuyProduct(success);
 
-        if (responseBuyProduct && selectedItems) {
+        if (success && selectedItems) {
           console.log("i bougth ", selectedItems[0].Name);
           removeItemFromCart(selectedItems[0]);
         } else {
-          console.log("i cant buy product because of ", responseBuyProduct);
+          console.log("i cant buy product because of ", selectedItems);
         }
 
         errorMsg && console.error(errorMsg);
