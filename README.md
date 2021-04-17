@@ -1,4 +1,4 @@
-# unity shop
+# rage shop
 
 ## quickstart
 - download the newest release
